@@ -1,0 +1,79 @@
+﻿@using LeaveReportApp.Data.Enum
+@* @model IEnumerable<LeaveReportApp.Models.LeaveReport> *@
+    @model LeaveReportApp.Models.LeaveTypeReportViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="LeaveReports" asp-action="Index" method="get">
+    <p>
+        <select asp-for="ReportLeaveType" asp-items="Model.LeaveTypes" name="type">
+            <option value="">Alla ledighetstyper</option>
+        </select>
+
+        Sök anställd: <input type="text" asp-for="SearchString" />
+
+        <select asp-for="ReportMonth" asp-items="Model.Months" name="selectedMonth">
+            <option value="">Välj månad</option>
+        </select>
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReports![0].StartDate)
+             
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReports![0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReports![0].LeaveReportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReports![0].LeaveType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReports![0].Employee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LeaveReports) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveReportDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LeaveReportId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LeaveReportId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LeaveReportId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
