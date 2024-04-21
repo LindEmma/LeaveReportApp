@@ -11,15 +11,15 @@ namespace LeaveReportApp.Models
         public int EmpId { get; set; }
         [Required]
         [MaxLength(50)]
-        [Display(Name ="Förnamn")]
+        [Display(Name = "Förnamn")]
         public string FirstName { get; set; } = string.Empty;
         [Required]
         [MaxLength(50)]
-        [Display(Name ="Efternamn")]
+        [Display(Name = "Efternamn")]
         public string LastName { get; set; } = string.Empty;
         [Required]
         [EnumDataType(typeof(Role))]
-        [Display(Name ="Roll")]
+        [Display(Name = "Anställning")]
         public Role? Roles { get; set; }
         public IList<LeaveReport>? LeaveReports;
     }

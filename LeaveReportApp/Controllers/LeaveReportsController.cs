@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LeaveReportApp.Data;
+using LeaveReportApp.Data.Enum;
+using LeaveReportApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LeaveReportApp.Data;
-using LeaveReportApp.Models;
-using LeaveReportApp.Data.Enum;
-using System.Globalization;
 
 namespace LeaveReportApp.Controllers
 {
@@ -39,23 +34,23 @@ namespace LeaveReportApp.Controllers
                      select l;
 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString)) //filter leave reports by search string (first names)
             {
                 lR = lR.Where(s => s.Employee!.FirstName.Contains(searchString));
             }
-            if (type != null)
+            if (type != null && type != 0) // filter leave reports by leave type, if not selected all types are shown
             {
                 lR = lR.Where(x => x.LeaveType == type);
             }
-            if (selectedMonth.HasValue)
+            if (selectedMonth.HasValue && selectedMonth != 0) // filter leave reports by which month it was created
             {
                 lR = lR.Where(x => x.LeaveReportDate.Month == selectedMonth.Value);
             }
 
-            var monthsList = Enum.GetValues(typeof(Months)).Cast<Months>().Select(m => new SelectListItem
+            var monthsList = Enum.GetValues(typeof(Months)).Cast<Months>().Select(m => new SelectListItem //creates list of months to select from
             {
                 Text = m.ToString(),
-                Value = ((int)m+1).ToString()
+                Value = ((int)m).ToString()
             });
 
             var leaveTypeReportVM = new LeaveTypeReportViewModel

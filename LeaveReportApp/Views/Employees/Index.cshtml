@@ -3,13 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<br />
+<h1 class="col-md-3">Personal</h1>
+<a asp-action="Create" class="btn btn-primary col-md-5 text-center w-auto">Lägg till</a>
+<br />
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -37,9 +35,9 @@
                 @Html.DisplayFor(modelItem => item.Roles)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmpId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmpId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmpId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.EmpId" class="btn btn-outline-primary" data-toggle="tooltip" title="Redigera"><i class="bi bi-pencil"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.EmpId" class="btn btn-outline-info" data-toggle="tooltip" title="Information"><i class="bi bi-info-circle"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.EmpId" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
 }

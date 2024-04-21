@@ -5,30 +5,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+<br />
+<h1>Ledighetsrapporter</h1>
+<h2>Historik</h2>
+<br />
 
-<h1>Index</h1>
+<div class="row mt-2">
+    <form asp-controller="LeaveReports" asp-action="Index" method="get" class="col-md-7">
+    <p >
+            Sök anställd: <input type="text" asp-for="SearchString" placeholder="Förnamn" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<form asp-controller="LeaveReports" asp-action="Index" method="get">
-    <p>
         <select asp-for="ReportLeaveType" asp-items="Model.LeaveTypes" name="type">
             <option value="">Alla ledighetstyper</option>
         </select>
-
-        Sök anställd: <input type="text" asp-for="SearchString" />
 
         <select asp-for="ReportMonth" asp-items="Model.Months" name="selectedMonth">
             <option value="">Välj månad</option>
         </select>
 
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filtrera" />
     </p>
 </form>
+<div class="col-md-2"></div>
 
-<table class="table">
+
+        <a asp-action="Create" class="btn btn-primary col-md-2 text-center">Rapportera ny ledighet</a>
+        <div class="col-md-1"></div>
+</div>
+
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -66,14 +71,16 @@
                 @Html.DisplayFor(modelItem => item.LeaveType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.LeaveReportId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LeaveReportId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LeaveReportId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.LeaveReportId" class="btn btn-outline-primary" data-toggle="tooltip" title="Redigera"><i class="bi bi-pencil"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.LeaveReportId" class="btn btn-outline-info" data-toggle="tooltip" title="Information"><i class="bi bi-info-circle"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.LeaveReportId" class="btn btn-outline-danger" data-toggle="tooltip" title="Radera"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+

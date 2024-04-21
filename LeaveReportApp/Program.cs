@@ -12,9 +12,16 @@ namespace LeaveReportApp
             builder.Services.AddDbContext<LeaveReportDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
+
+            //adds the data from Seed.cs
+            if (args.Length == 1 && args[0].ToLower() == "seeddata")
+            {
+                Seed.SeedData(app);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

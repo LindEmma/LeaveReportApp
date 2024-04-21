@@ -5,9 +5,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Rapportera sjukdom eller ledighet här</h1>
 
-<h4>LeaveReport</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,11 +22,6 @@
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-             @* <div class="form-group">
-                <label asp-for="LeaveReportDate" class="control-label"></label>
-                <input asp-for="LeaveReportDate" class="form-control" />
-                <span asp-validation-for="LeaveReportDate" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
                 <label asp-for="LeaveType" class="control-label"></label>
                 <select asp-for="LeaveType" class="form-control" asp-items="Html.GetEnumSelectList<LeaveType>()"></select>
@@ -45,7 +39,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Tillbaka till ledighetshistoriken</a>
 </div>
 
 @section Scripts {

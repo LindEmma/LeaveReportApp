@@ -1,6 +1,6 @@
 ﻿namespace LeaveReportApp.Data.Enum
 {
-    public enum Role
+    public enum Role //Roles to choose from
     {
         Rektor,
         Administratör,
